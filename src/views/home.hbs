@@ -1,0 +1,19 @@
+<section>
+  <p>Home</p>
+  {{#each posts}}
+
+    <p>{{formatDate date_published}}</p>
+    {{#if youtube_post}}
+      <iframe src= {{decodeLink youtube_url}} width="560" height="315"></iframe>
+      <h3>{{title}}</h3>
+    {{else}}
+      <h3>{{title}}</h3>
+      <img src= {{decodeLink image_url}} alt= {{imageAltText title}}>
+    {{/if}}
+    <p>{{article}}</p>
+    <p>{{youtube_url}}</p>
+    <p>{{post_category}}</p>
+    <p>{{tags}}</p>
+  {{/each}}
+
+</section>
