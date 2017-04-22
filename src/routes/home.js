@@ -6,11 +6,18 @@ const handler = (request, reply) => {
     if (err) {
       return reply(err)
     }
+    // parse stringified arrays
     let homeContext = {
-      posts: postsArray
-    }
-    console.log('homeContext: ', homeContext);
-    reply.view('home', homeContext)
+      posts: postsArray.map(function(postElement){
+        var newObj = postElement;
+        newObj.tags = JSON.parse(postElement.tags);
+        newObj.post_category = JSON.parse(postElement.post_category);
+        return newObj;
+      })
+    };
+
+
+    reply.view('home', homeContext);
   });
 }
 

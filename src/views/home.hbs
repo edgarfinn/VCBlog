@@ -1,19 +1,73 @@
 <section>
   <p>Home</p>
   {{#each posts}}
-
-    <p>{{formatDate date_published}}</p>
     {{#if youtube_post}}
-      <iframe src= {{decodeLink youtube_url}} width="560" height="315"></iframe>
-      <h3>{{title}}</h3>
-    {{else}}
-      <h3>{{title}}</h3>
-      <img src= {{decodeLink image_url}} alt= {{imageAltText title}}>
-    {{/if}}
-    <p>{{article}}</p>
-    <p>{{youtube_url}}</p>
-    <p>{{post_category}}</p>
-    <p>{{tags}}</p>
-  {{/each}}
+      <!-- youtube post with image -->
+      {{#if image_url}}
 
+        <h3>Youtube post with image{{title}}</h3>
+
+        <img src= {{decodeLink image_url}} alt= {{imageAltText title}}>
+
+        <article>
+          <p>{{article}}</p>
+        </article>
+
+        <iframe src= {{decodeLink youtube_url}} width="560" height="315">
+        </iframe>
+
+      {{else}}
+      <!-- case: youtube post no image -->
+
+      <iframe src= {{decodeLink youtube_url}} width="560" height="315">
+      </iframe>
+
+      <h3>Youtube post NO image{{title}}</h3>
+
+      <article>
+        <p>{{article}}</p>
+      </article>
+
+      {{/if}}
+    {{else}}
+    <!-- MIXCLOUD POSTS -->
+    <!-- mixcloud post with image -->
+    {{#if image_url}}
+
+      <h3>Mixcloud post with image{{title}}</h3>
+
+      <img src= {{decodeLink image_url}} alt= {{imageAltText title}}>
+
+      <article>
+        <p>{{article}}</p>
+      </article>
+
+      <iframe src= {{decodeLink youtube_url}} width="560" height="315">
+      </iframe>
+
+    {{else}}
+    <!-- case: mixcloud post no image -->
+
+    <iframe src= {{decodeLink youtube_url}} width="560" height="315">
+    </iframe>
+
+    <h3>Mixcloud post NO image{{title}}</h3>
+
+    <article>
+      <p>{{article}}</p>
+    </article>
+
+    {{/if}}
+
+    {{/if}}
+    <div class="post-tags-container">
+      <span>Tags: </span>
+      {{#each tags}}
+        <span>
+          {{this}}
+        </span>
+      {{/each}}
+    </div>
+
+  {{/each}}
 </section>
